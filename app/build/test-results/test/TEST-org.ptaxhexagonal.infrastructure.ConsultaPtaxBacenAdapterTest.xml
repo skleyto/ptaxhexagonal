@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.ptaxhexagonal.infrastructure.ConsultaPtaxBacenAdapterTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-05-18T02:38:31.450Z" hostname="ULTRAKLEYTON" time="0.622">
+  <properties/>
+  <testcase name="deve retornar null para data futura sem cotação()" classname="org.ptaxhexagonal.infrastructure.ConsultaPtaxBacenAdapterTest" time="0.439"/>
+  <testcase name="deve retornar null para data inválida()" classname="org.ptaxhexagonal.infrastructure.ConsultaPtaxBacenAdapterTest" time="0.048"/>
+  <testcase name="deve retornar ptax para data válida com cotação disponível()" classname="org.ptaxhexagonal.infrastructure.ConsultaPtaxBacenAdapterTest" time="0.081"/>
+  <testcase name="deve retornar null para data em formato incorreto()" classname="org.ptaxhexagonal.infrastructure.ConsultaPtaxBacenAdapterTest" time="0.049"/>
+  <system-out><![CDATA[2025-05-17 23:38:31 [Test worker] INFO  o.p.i.ConsultaPtaxBacenAdapter - Consultando PTAX para a data: 12-31-2099
+2025-05-17 23:38:31 [Test worker] WARN  o.p.i.ConsultaPtaxBacenAdapter - Valor da cotação não encontrado na resposta.
+2025-05-17 23:38:31 [Test worker] INFO  o.p.i.ConsultaPtaxBacenAdapter - Consultando PTAX para a data: data-invalida
+2025-05-17 23:38:31 [Test worker] ERROR o.p.i.ConsultaPtaxBacenAdapter - Falha ao consultar Bacen. Código HTTP: 500
+2025-05-17 23:38:31 [Test worker] INFO  o.p.i.ConsultaPtaxBacenAdapter - Consultando PTAX para a data: 05-16-2025
+2025-05-17 23:38:32 [Test worker] INFO  o.p.i.ConsultaPtaxBacenAdapter - Valor encontrado: 5.6919
+2025-05-17 23:38:32 [Test worker] INFO  o.p.i.ConsultaPtaxBacenAdapter - Consultando PTAX para a data: 2025/05/16
+2025-05-17 23:38:32 [Test worker] ERROR o.p.i.ConsultaPtaxBacenAdapter - Falha ao consultar Bacen. Código HTTP: 500
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.ptaxhexagonal.domain.PtaxTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-05-18T02:38:30.765Z" hostname="ULTRAKLEYTON" time="0.04">
+  <properties/>
+  <testcase name="deve criar entidade Ptax corretamente()" classname="org.ptaxhexagonal.domain.PtaxTest" time="0.04"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
