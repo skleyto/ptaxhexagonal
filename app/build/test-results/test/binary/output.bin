@@ -1,8 +1,8 @@
-s2025-05-17 23:38:31 [Test worker] INFO  o.p.i.ConsultaPtaxBacenAdapter - Consultando PTAX para a data: 12-31-2099
-z2025-05-17 23:38:31 [Test worker] WARN  o.p.i.ConsultaPtaxBacenAdapter - Valor da cotação não encontrado na resposta.
-v2025-05-17 23:38:31 [Test worker] INFO  o.p.i.ConsultaPtaxBacenAdapter - Consultando PTAX para a data: data-invalida
-v2025-05-17 23:38:31 [Test worker] ERROR o.p.i.ConsultaPtaxBacenAdapter - Falha ao consultar Bacen. Código HTTP: 500
-s2025-05-17 23:38:31 [Test worker] INFO  o.p.i.ConsultaPtaxBacenAdapter - Consultando PTAX para a data: 05-16-2025
-c2025-05-17 23:38:32 [Test worker] INFO  o.p.i.ConsultaPtaxBacenAdapter - Valor encontrado: 5.6919
-s2025-05-17 23:38:32 [Test worker] INFO  o.p.i.ConsultaPtaxBacenAdapter - Consultando PTAX para a data: 2025/05/16
-v2025-05-17 23:38:32 [Test worker] ERROR o.p.i.ConsultaPtaxBacenAdapter - Falha ao consultar Bacen. Código HTTP: 500
+s2025-05-26 22:54:24 [Test worker] INFO  o.p.i.ConsultaPtaxBacenAdapter - Consultando PTAX para a data: 12-31-2099
+�2025-05-26 22:54:24 [Test worker] WARN  o.p.i.ConsultaPtaxBacenAdapter - Data inválida fornecida pelo usuário: 12-31-2099. Esperado: yyyy-MM-dd
+v2025-05-26 22:54:24 [Test worker] INFO  o.p.i.ConsultaPtaxBacenAdapter - Consultando PTAX para a data: data-invalida
+�2025-05-26 22:54:24 [Test worker] WARN  o.p.i.ConsultaPtaxBacenAdapter - Data inválida fornecida pelo usuário: data-invalida. Esperado: yyyy-MM-dd
+s2025-05-26 22:54:24 [Test worker] INFO  o.p.i.ConsultaPtaxBacenAdapter - Consultando PTAX para a data: 05-16-2025
+�2025-05-26 22:54:24 [Test worker] WARN  o.p.i.ConsultaPtaxBacenAdapter - Data inválida fornecida pelo usuário: 05-16-2025. Esperado: yyyy-MM-dd
+s2025-05-26 22:54:24 [Test worker] INFO  o.p.i.ConsultaPtaxBacenAdapter - Consultando PTAX para a data: 2025/05/16
+�2025-05-26 22:54:24 [Test worker] WARN  o.p.i.ConsultaPtaxBacenAdapter - Data inválida fornecida pelo usuário: 2025/05/16. Esperado: yyyy-MM-dd

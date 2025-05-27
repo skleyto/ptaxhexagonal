@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ptaxhexagonal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ptaxhexagonal
+  template:
+    metadata:
+      labels:
+        app: ptaxhexagonal
+    spec:
+      containers:
+      - name: ptaxhexagonal
+        image: 346744549894.dkr.ecr.us-east-2.amazonaws.com/repo-ecr-ptaxhexagonal:latest
+        ports:
+        - containerPort: 7000

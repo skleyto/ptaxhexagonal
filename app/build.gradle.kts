@@ -12,6 +12,8 @@ plugins {
 
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    
+     id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 repositories {
@@ -26,6 +28,8 @@ dependencies {
     implementation("com.splunk.logging:splunk-library-javalogging:1.11.5")
     implementation("ch.qos.logback:logback-classic:1.4.14")
     implementation("io.javalin:javalin:5.6.2")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.0")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.0")
 }
 
 testing {
@@ -47,5 +51,6 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = "org.example.AppKt"
+    mainClass.set("org.ptaxhexagonal.MainKt")
+
 }
