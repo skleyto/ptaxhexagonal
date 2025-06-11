@@ -1,8 +1,0 @@
-s2025-05-26 22:54:24 [Test worker] INFO  o.p.i.ConsultaPtaxBacenAdapter - Consultando PTAX para a data: 12-31-2099
-�2025-05-26 22:54:24 [Test worker] WARN  o.p.i.ConsultaPtaxBacenAdapter - Data inválida fornecida pelo usuário: 12-31-2099. Esperado: yyyy-MM-dd
-v2025-05-26 22:54:24 [Test worker] INFO  o.p.i.ConsultaPtaxBacenAdapter - Consultando PTAX para a data: data-invalida
-�2025-05-26 22:54:24 [Test worker] WARN  o.p.i.ConsultaPtaxBacenAdapter - Data inválida fornecida pelo usuário: data-invalida. Esperado: yyyy-MM-dd
-s2025-05-26 22:54:24 [Test worker] INFO  o.p.i.ConsultaPtaxBacenAdapter - Consultando PTAX para a data: 05-16-2025
-�2025-05-26 22:54:24 [Test worker] WARN  o.p.i.ConsultaPtaxBacenAdapter - Data inválida fornecida pelo usuário: 05-16-2025. Esperado: yyyy-MM-dd
-s2025-05-26 22:54:24 [Test worker] INFO  o.p.i.ConsultaPtaxBacenAdapter - Consultando PTAX para a data: 2025/05/16
-�2025-05-26 22:54:24 [Test worker] WARN  o.p.i.ConsultaPtaxBacenAdapter - Data inválida fornecida pelo usuário: 2025/05/16. Esperado: yyyy-MM-dd

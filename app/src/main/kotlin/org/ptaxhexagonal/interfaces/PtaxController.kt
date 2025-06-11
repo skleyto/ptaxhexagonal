@@ -2,10 +2,10 @@
 package org.ptaxhexagonal.interfaces
 
 import org.ptaxhexagonal.application.ConsultaPtaxUseCase
-import org.ptaxhexagonal.domain.Ptax
+import org.ptaxhexagonal.domain.PtaxDto
 
 class PtaxController(private val consultaPtaxUseCase: ConsultaPtaxUseCase) {
-    fun getPtax(data: String): Ptax? {
+    fun getPtax(data: String): PtaxDto? {
         return consultaPtaxUseCase.consultarPtax(data)
     }
 }

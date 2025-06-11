@@ -1,36 +1,63 @@
 package org.ptaxhexagonal.infrastructure
 
 import org.ptaxhexagonal.application.ConsultaPtaxUseCase
-import org.ptaxhexagonal.domain.Ptax
-import kotlin.test.Test
-import kotlin.test.assertNull
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.ptaxhexagonal.domain.PtaxDto
+import org.slf4j.LoggerFactory
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
+import java.time.LocalDate
+import java.time.format.DateTimeParseException
 
-class ConsultaPtaxBacenAdapterTest {
-    private val adapter = ConsultaPtaxBacenAdapter()
+class ConsultaPtaxBacenAdapter : ConsultaPtaxUseCase {
+    private val logger = LoggerFactory.getLogger(ConsultaPtaxBacenAdapter::class.java)
 
-    @Test
-    fun `deve retornar ptax para data válida com cotação disponível`() {
-        // Use uma data real que tenha cotação disponível no Bacen
-        val ptax = adapter.consultarPtax("05-16-2025")
-        assertTrue(ptax == null || ptax.valor > 0.0)
-    }
+    override fun consultarPtax(data: String): PtaxDto? {
+        logger.info("Consultando PTAX para a data: $data")
+        val dataFormatada = try {
+            val parsed = LocalDate.parse(data)
+            "%02d-%02d-%04d".format(parsed.monthValue, parsed.dayOfMonth, parsed.year)
+        } catch (e: DateTimeParseException) {
+            logger.warn("Data inválida fornecida pelo usuário: $data. Esperado: yyyy-MM-dd")
+            return null
+        }
 
-    @Test
-    fun `deve retornar null para data futura sem cotação`() {
-        val ptax = adapter.consultarPtax("12-31-2099")
-        assertNull(ptax)
-    }
+        val url = "https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao='$dataFormatada'"
+        logger.info("URL consultada: $url")
 
-    @Test
-    fun `deve retornar null para data inválida`() {
-        val ptax = adapter.consultarPtax("data-invalida")
-        assertNull(ptax)
-    }
+        return try {
+            val connection = java.net.URI(url).toURL().openConnection() as java.net.HttpURLConnection
+            connection.requestMethod = "GET"
+            connection.connectTimeout = 5000
+            connection.readTimeout = 5000
 
-    @Test
-    fun `deve retornar null para data em formato incorreto`() {
-        val ptax = adapter.consultarPtax("2025/05/16")
-        assertNull(ptax)
+            if (connection.responseCode == 200) {
+                val response = connection.inputStream.bufferedReader().use { it.readText() }
+                logger.debug("Resposta recebida: $response")
+
+                val compra = "\"cotacaoCompra\":([0-9.]+)".toRegex().find(response)?.groupValues?.get(1)?.toDoubleOrNull()
+                val venda = "\"cotacaoVenda\":([0-9.]+)".toRegex().find(response)?.groupValues?.get(1)?.toDoubleOrNull()
+                val dataHora = "\"dataHoraCotacao\":\"([^\"]+)\"".toRegex().find(response)?.groupValues?.get(1)
+
+                if (compra != null && venda != null && dataHora != null) {
+                    logger.info("Compra: $compra, Venda: $venda, DataHora: $dataHora")
+                    return PtaxDto(data, compra, venda, dataHora)
+                } else {
+                    logger.warn("Valores não encontrados na resposta. Verifique se a data informada é um dia útil bancário.")
+                    null
+                }
+            } else {
+                logger.error("Falha ao consultar Bacen. Código HTTP: ${connection.responseCode}")
+                null
+            }
+        } catch (e: UnknownHostException) {
+            logger.error("Não foi possível conectar ao Bacen. Verifique sua conexão com a internet.", e)
+            null
+        } catch (e: SocketTimeoutException) {
+            logger.error("Tempo de resposta excedido ao consultar o Bacen.", e)
+            null
+        } catch (e: Exception) {
+            logger.error("Erro inesperado ao consultar Bacen: ${e.message}", e)
+            null
+        }
     }
 }
